@@ -1,0 +1,125 @@
+# Haciendo un reporte {.title-top-ice background-image="images/horst_penguins_telescope.png" aria-label="One penguin standing on another penguin's shoulders in a snowscape, looking through a telescope at a Quarto logo moon in the night sky."}
+
+::: notes
+**Mine:** Much of my work, and much of Julie's work is collaborative. So, over to you Julie, for collaborating with Quarto.
+
+**Julie:** Thank you Mine -
+:::
+
+## Componentes de un .qmd {#qmd-component}
+
+![](images/2-collaborate/qmd_components.png){fig-align="center" fig-alt="Componentes QMD."}
+
+## Formatear texto con Markdown {#markdown-text}
+
+Un documento Quarto se hace con un **encabezado**, algo de **texto** y algo de **código**.
+
+Es fácil dar formato al texto utilizando un lenguaje de marcado llamado markup.
+
+<br>
+
+### ¿Qué es Markdown?
+
+Markdown es un lenguaje de marcado ligero que te permite dar formato al texto utilizando una sintaxis sencilla de texto plano.
+
+<br>
+
+Para ponerlo simple, puedes escribir en tu archivo Quarto algo así:
+
+`` Me *encanta* la función `boxplot()` de R, **muchísimo**. ``
+
+<br>
+
+Y obtendrás este resultado en tu reporte:
+
+Me *encanta* la función \`boxplot()\` de R, **muchísimo**.
+
+## Énfasis & Código {#markdown-text-2}
+
+<br>
+
+-   Para poner un texto en negrita, use dos **asteriscos** `**` o guiones bajos `__`.
+-   Para poner el texto en cursiva, use un asterisco \* o un guión bajo `_`.
+-   Para añadir algo relacionado con el código, envuélvalo con back-ticks `` ` ``.
+
+## Encabezados {#markdown-text-3}
+
+Para crear un encabezado, añada de uno a seis símbolos \# antes del texto del encabezado. El número de \# determinará el nivel jerárquico y el tamaño tipográfico del encabezamiento.
+
+<br>
+
+Por ejemplo, éste será un título de nivel 1 en su documento:
+
+`# Título importante`
+
+<br>
+
+Y éste un título de nivel 2:
+
+`## Un poco menos importante`
+
+## Links e Imágenes {#markdown-text-4}
+
+Para crear un hipervínculo, encierra el texto del enlace entre corchetes \[\] y la URL entre paréntesis ().
+
+`[Visite Google](https://www.google.com)`
+
+<br>
+
+Para añadir una imagen, se añade un signo de exclamación ! a un hipervínculo.
+
+`![Texto alternativo de la imagen](url_imagen)`
+
+## Listas {#markdown-text-5}
+
+Para las listas desordenadas, utilice asteriscos \*, más + o menos -.
+
+`* Elemento 1 * Elemento 2 * Subelemento 1`
+
+<br>
+
+Para listas ordenadas, utilice números seguidos de un punto.
+
+`1. Primer elemento 2. Segundo elemento`
+
+## Código {#qmd-r-code}
+
+-   Los chunks de código empiezan y termina con back-ticks `` ` ``
+
+```{r}
+#| echo: fenced
+#| eval: false
+#| label: suma
+2 + 2
+```
+
+-   `{r}` indica el lenguaje de programación en el que queremos que se evalúe el código.
+-   Entre los tres back-ticks, `{r}` y los tres back-ticks que cierran, va el código, pero también se pueden escribir opciones chunk de códigos identificadas con un `#|`.
+-   También puede haber código en el texto `` `r ` ``
+
+## Más opciones de código {#qmd-r-code-2}
+
+-   `#| label`: es el nombre del chunk.
+-   `#| echo`: Controla si se muestra el propio código.
+-   `#| eval`: Controla si el código es evaluado.
+-   `#| include`: Controla si tanto el código como su salida se incluyen en el documento.
+-   `#| output`: Controla si se muestra la salida del código.
+-   `#| warning: false` no se imprimen los warnings, ej: conflicto de versiones.
+-   `#| error: false` puede ser usado para hacer que compile el documento incluso si algún chunk tiene problemas.
+
+## Tabla de resumen de código {#qmd-r-code-3}
+
+| Opción              | Código Ejecutado | Código Mostrado | Salida Mostrada |
+|---------------------|------------------|-----------------|-----------------|
+| `#| echo: false`    | Sí               | No              | Sí              |
+| `#| eval: false`    | No               | Sí              | No              |
+| `#| include: false` | Sí               | No              | No              |
+| `#| output: false`  | Sí               | Sí              | No              |
+
+<br>
+
+### Colapsar código en el documento 
+
+En este taller, nos centrados en las opciones clave de chucks de código en Quarto que mejoran significativamente la legibilidad del informe. Más allá de estas, hay [opciones adicionales](https://yihui.org/knitr/options/) para explorar si tienes curiosidad 🤓
+
+

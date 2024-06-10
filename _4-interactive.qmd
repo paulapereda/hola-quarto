@@ -1,0 +1,62 @@
+# Interactividad {.title-top-ice background-image="images/horst_quarto_penguins_reimagine.png" aria-label="Two excited penguins diving off of an iceberg into the ocean. A Quarto logo moon in the sky is reflected in the water that they're diving into."}
+
+## Tablas interactivas con `DT` {.interactive-tables}
+
+Esta es una de mis técnicas preferidas para mostrar Quarto 😍.
+
+Con sólo dos líneas de código adicionales, podés demostrar una tabla interactiva que permite:
+
+- ordenar
+- filtrar
+- buscar en
+- paginación
+
+Esta función es muy útil para mostrar el conjunto de datos de entrada si no es demasiado grande. Ofrece a los lectores la comodidad de acceder a los datos directamente desde el informe.
+
+La magia de esta funcionalidad reside en la biblioteca DT. DT son las siglas de DataTables: la biblioteca JavaScript que hay detrás.
+
+## Tablas interactivas con `DT` {.interactive-tables-2}
+
+```{r}
+library(tidyverse)
+library(DT)
+
+pinguinos <- datos::pinguinos 
+
+# Lo hago una tabla
+datatable(pinguinos %>% select(-largo_aleta_mm, - masa_corporal_g), filter = "top", options = list(pageLength = 10), class = 'dt-small')
+```
+
+## Gráficos interactivos {.interactive-graphs}
+
+A esta altura nuestro informe Quarto es un documento HTML, esencialmente un sitio web en miniatura 😳
+
+```{r}
+library(tidyverse)
+library(gapminder)
+
+p <- gapminder %>%
+  filter(year == 1977) %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp, size = pop, color = continent)) +
+  geom_point() +
+  theme_bw() +
+  labs(x = "PBI per cápita",
+       y = "Expectativa de vida",
+       color = "",
+       size = "")
+  
+```
+
+## Gráficos interactivos {.interactive-graphs-2}
+
+Y ahora la parte mágica 🧙
+
+Envuelve tu objeto p en la función `ggplotly()` de plotly, ¡y tu scatterplot será interactivo!
+
+```{r}
+#| fig-width: 6
+#| fig-height: 6
+
+library(plotly)
+ggplotly(p)
+```

@@ -1,0 +1,242 @@
+---
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+## El ecosistema de R Markdown
+
+![](images/1-share/rmd_ecosystem.png){fig-align="center" fig-alt="Hex logos for various packages from the R Markdown ecosystem."}
+
+::: notes
+Julie mentioned unifying the R Markdown ecosystem so let's dig a bit more into what that means...
+
+Think of all the packages from the R Markdown universe that you've come to love and rely on over the years.
+Each package addresses a different need and offers a different output: for example, you can use blogdown or distill for creating websites and blogs, bookdown for writing a book, rticles for writing journal articles, etc.
+:::
+
+## Quarto: La nueva generación de R Markdown {transition="zoom"}
+
+![](images/horst_quarto_ball_straight.png){fig-align="center" width="50%" fig-alt="Quarto logo."}
+
+::: notes
+Quarto unifica la funcionalidad de estos paquetes,
+
+basándose en Pandoc en el aspecto técnico
+
+y en el lado humano: más de una década de experiencia desarrollando, manteniendo y ajustando estos paquetes, así como los comentarios de la comunidad sobre los paquetes de extensión R Markdown.
+
+Tal esfuerzo de unificación presenta una fantástica oportunidad para identificar y abordar las lagunas de funcionalidad y las ineficiencias en la experiencia del usuario, y el proceso de construcción de Quarto no ha sido diferente.
+:::
+
+## Highlights de Quarto
+
+::: columns
+::: {.column width="5%"}
+:::
+
+::: {.column width="40%"}
+::: bulletbox
+::: {.fragment .fade-in-then-semi-out}
+![](images/horst_quarto_ball-1_4.png){width="50px" fig-alt="One quadrant of the Quarto logo."} Implementación coherente de funciones atractivas y prácticas en todos los productos: tabsets, plegado de código, resaltado de sintaxis, etc.
+:::
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="40%"}
+::: bulletbox
+::: {.fragment .fade-in-then-semi-out}
+![](images/horst_quarto_ball-2_4.png){width="50px" fig-alt="Two quadrants of the Quarto logo."} Valores por defecto más accesibles y mejor soporte para la accesibilidad.
+:::
+:::
+:::
+
+::: {.column width="5%"}
+:::
+:::
+
+::: columns
+::: {.column width="5%"}
+:::
+
+::: {.column width="40%"}
+::: bulletbox
+::: {.fragment .fade-in-then-semi-out}
+![](images/horst_quarto_ball-3_4.png){width="50px" fig-alt="Three quadrants of the Quarto logo."} Guías, especialmente útiles para los principiantes: Completado de YAML, errores de sintaxis informativos, etc.
+:::
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="40%"}
+::: bulletbox
+::: {.fragment .fade-in-then-semi-out}
+![](images/horst_quarto_ball-4_4.png){width="50px" fig-alt="Four quadrants of the Quarto logo."} Soporte para otros lenguajes como Python, Julia, Observable, y más a través del motor Jupyter para pedazos de código ejecutables.
+:::
+:::
+:::
+
+::: {.column width="5%"}
+:::
+:::
+
+::: notes
+Algunas de estas mejoras son
+
+--\> Implementación consistente de características atractivas y prácticas en *todos* los resultados, como tabsets, plegado de código y resaltado de sintaxis,
+
+--\> valores por defecto más accesibles, así como un mejor soporte para la creación de documentos accesibles,
+
+--\> Guías que son particularmente útiles para los nuevos alumnos, como la finalización de YAML y errores de sintaxis informativos,
+
+--\> y quizás lo más emocionante para aquellos que no vienen del ecosistema R, Quarto ofrece soporte para otros lenguajes como Python, Julia, Observable, y más a través del motor Jupyter para trozos de código ejecutables.
+Y está diseñado para ser expandible a más motores y lenguajes, incluso aquellos que podrían no existir hoy en día.
+
+\[pause\] Así que por ahora estoy asumiendo que muchos de ustedes ya han comenzado a jugar con Quarto, o están esperando que yo lo haga.
+Así que, ¡vamos a sumergirnos y ver de qué se trata todo el alboroto de Quarto!
+:::
+
+##  {#demo-share .centered data-menu-title="Demo: Share" background-video="videos/demo-share.mov" background-size="contain" background-color="#FFFFFF"}
+
+::: notes
+-   Open hello.Rmd with source editor -\> knit
+-   Change to visual editor -\> knit
+-   Close file -\> change file type to .qmd -\> open + render
+-   Change `output: html_document` to `format: html` -\> render
+-   Click on Render on save
+-   Change to `format: pdf` -\> render -\> then change back
+-   Add chunk option `echo: false` to the first chunk
+-   Add `execute` \> `echo: false` to the yaml
+-   Add alt text to figure in second code chunk -\> save to render
+-   Change to `format: revealjs` -\> save to render
+-   Add H2 to break slides
+-   Change to `format: html`
+-   Add `index.qmd` with File \> New Quarto Document
+-   Add `_quarto.yml` for website
+-   Relaunch project
+-   Show new Build tab
+-   Render site, show `_site` folder
+-   Add freeze to \_quarto.yml
+-   From terminal: `quarto publish`
+:::
+
+## ¿Cómo funciona? {.takeaway .center}
+
+::: {.fragment .fade-up}
+![](images/horst_qmd_render_schema.png){fig-alt="A schematic representing rendering of Quarto documents from .qmd, to knitr or jupyter, to plain text markdown, then converted by pandoc into any number of output types including html, PDF, or Word document." fig-align="center"}
+:::
+
+::: notes
+Now that you've all had a chance to see Quarto in action, you might be wondering, "how are R Markdown and Quarto different"?
+
+The main difference is that with R Markdown, the R package rmarkdown does the heavy lifting of going from the source Rmd file to the the output, using knitr for evaluating the code chunks.
+
+--\> With Quarto, on the other hand, the Quarto command line interface, or the Quarto CLI, does the orchestration of processing executable code chunks with either knitr or jupyter and then converting the resulting markdown file to the desired output.
+
+While this is technically impressive, I'll be honest, it's not exactly what sparked my interest in Quarto in the first place.
+:::
+
+## Quarto facilita la transición entre formatos {.takeaway .center}
+
+::: columns
+::: {.column width="33%"}
+::: fragment
+Documento
+
+::: {.code-file .sourceCode .cell-code}
+{{< fa file >}} lesson-1.qmd
+:::
+
+``` yaml
+title: "Lesson 1"
+format: html
+```
+:::
+:::
+
+::: {.column width="33%"}
+::: fragment
+Presentación
+
+::: {.code-file .sourceCode .cell-code}
+{{< fa file >}} lesson-1.qmd
+:::
+
+``` yaml
+title: "Lesson 1"
+format: revealjs
+```
+:::
+:::
+
+::: {.column width="33%"}
+::: fragment
+Sitio Web
+
+::: {.code-file .sourceCode .cell-code}
+{{< fa file >}} \_quarto.yml
+:::
+
+``` yaml
+project:
+  type: website
+
+website: 
+  navbar: 
+    left:
+      - lesson-1.qmd
+```
+:::
+:::
+:::
+
+::: notes
+What did spark my interest was how how straightforward it is with Quarto to move between output formats.
+
+As an educator, two things are of utmost importance to me about the tools I use to create my materials: reproducibility and ease of transition between output formats, like documents to slides to websites to books.
+
+Over the last year of using Quarto for pretty much everything, I've felt like I've finally found the tool that lets me go from one output type to the other with minimal, if any, futzing around with my source code beyond the yaml.
+For example, here are common things I produce
+
+--\> a lesson in document form <br> --\> the same content in presentation form <br> --\> the same content on a page in a website,
+
+and you can see that all that needed to change going between these formats is a few lines in the yaml.
+Nothing in the content part of my document.
+No slide breaks to remove, no citation style to change, no headings to re-level.
+This ease of transition has freed up time to focus my time on content, and that, folks, is the dream!
+:::
+
+## Quarto facilita el intercambio abierto {.takeaway .center}
+
+<br>
+
+::: {.fragment .fade-up .midi}
+Las herramientas que facilitan compartir lo que hacés con el mundo (?) en la web es increíblemente útil.
+:::
+
+<br>
+
+::: {.fragment .fade-up .midi}
+No sólo es útil para uno, sino para todo el mundo ya que facilita el intercambio abierto de conocimientos para aprender y reutilizar.
+:::
+
+::: notes
+Ultimately, easily creating reproducible artifacts is great.
+
+But for the sharing story to be complete, the tool also needs to support easily *sharing* those artifacts, like with a simple command like `quarto publish`, and hopefully soon a button RStudio that does the same thing.
+
+--\> I think that tooling that makes it easy to share what you do with the world on the web is incredibly useful.
+
+--\> And it's not just useful to you, the creator, but to the world, as it facilitates open sharing of knowledge for learning and for reuse.
+
+\[Pause\]
+
+I've been talking just about me and my work so far, but I, like many of you, don't operate in a silo disconnected from others.
+
+**\[Mine continue on next slide\]**
+:::

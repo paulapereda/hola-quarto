@@ -1,0 +1,163 @@
+---
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+# Gráficos limpios {.title-middle-ice background-image="images/horst_quarto_penguins_teach.png" aria-label="Two penguins in a room made of ice, looking out a window. One penguin is holding an icicle as a pointer, pointing at a Quarto logo moon in the sky, while the other penguin looks on."}
+
+## Controla el tamaño de tu gráfico {#graph-size}
+
+-   Quarto permite especificar el tamaño de los gráficos directamente dentro de los parámetros del fragmento de código.
+
+-   Se puede controlar tanto el ancho como el alto de una figura usando las opciones fig.width y fig.height.
+    Estas dimensiones se especifican en pulgadas.
+
+```{r}
+#| echo: fenced
+#| eval: false
+#| fig-width: 3
+#| fig-height: 3
+# Code for a square chart, 3x3 inches
+```
+
+-   En la web, normalmente tenemos 96 píxeles por pulgada (PPI).
+    Y por defecto, un documento Quarto se renderiza con un ancho de 900 píxeles.
+
+-   Por lo tanto, si el gráfico tiene una anchura de 9 pulgadas, ocupará toda la anchura de la página.
+
+## Controla el tamaño de tu gráfico {#graph-size-2}
+
+Por favor, consulte los siguientes ejemplos para una mejor comprensión:
+
+```{r}
+#| echo: false
+library(tidyverse)
+data <- datos::pinguinos 
+source("funciones.R")
+```
+
+::: panel-tabset
+### Ancho = 3
+
+```{r}
+#| echo: false
+#| fig-width: 3
+#| fig-height: 3
+crear_scatterplot(data, "Adelia", "Torgersen")
+```
+
+### Ancho = 6
+
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 6
+crear_scatterplot(data, "Adelia", "Torgersen")
+```
+
+### Ancho = 9
+
+```{r}
+#| echo: false
+#| fig-width: 7.5
+#| fig-height: 7.5
+crear_scatterplot(data, "Adelia", "Torgersen")
+```
+:::
+
+## Responsividad {#responsiveness-1}
+
+-   La capacidad de respuesta en el diseño web significa que su contenido, incluidas las figuras, se **ajusta al tamaño de la pantalla** del dispositivo en el que se está visualizando.
+    Esto es **crucial** para mantener una experiencia fácil de usar.
+
+-   Creanme, habrá gente leyendo el reporte en su teléfono.
+
+-   Quarto se destaca en la creación de figuras responsivas **automáticamente** 🎉.
+    Si el tamaño especificado en pulgadas **excede el ancho de la pantalla**, Quarto inteligentemente **redimensionará la figura** para ajustarse al ancho completo de la pantalla mientras **mantiene la relación de aspecto original**.
+
+## Responsividad
+
+-   La figura tiene un ancho de 8 pulgadas. Al disminuir la anchura de la pantalla, se ajusta automáticamente para ocupar el 100% de la anchura disponible.
+
+![](images/3-teach/responsive_fig.gif){fig-align="center" fig-alt="Responsiveness."}
+
+## Alineación de figuras {.fig-align}
+
+Las distintas preferencias de alineación de las figuras, como izquierda, centro o derecha, pueden gestionarse fácilmente en Quarto mediante los parámetros chunk `fig.align = 'left'`, `fig.align = 'center'`, or `fig.align = 'right'`, respectivamente.
+
+::: panel-tabset
+### Izquierda
+
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 5
+#| fig-align: "left"
+crear_scatterplot(data, "Adelia", "Torgersen")
+```
+
+### Centro
+
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 5
+#| fig-align: "center"
+crear_scatterplot(data, "Adelia", "Torgersen")
+```
+
+### Derecha
+
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 5
+#| fig-align: "right"
+crear_scatterplot(data, "Adelia", "Torgersen")
+```
+:::
+
+## Múltiples figuras {.mult-figs}
+
+<br>
+
+- La visualización de varios gráficos uno al lado del otro es un requisito frecuente para un informe limpio de Quarto. Por defecto, los gráficos generados dentro de un único fragmento de código se muestran uno tras otro verticalmente, consumiendo un espacio considerable en la página.
+
+- Quarto incluye amplias funciones para personalizar la disposición de las figuras. Una de las opciones más sencillas es la función `layout-ncol`. Permite especificar el número de columnas en las que deben mostrarse los gráficos.
+
+- Una ventaja añadida de este enfoque es su capacidad de respuesta. Cuando se visualizan en pantallas más estrechas, los gráficos se apilan verticalmente de forma automática, lo que garantiza su claridad y legibilidad.
+
+## Quarto aplana la curva de aprendizaje {.takeaway .center}
+
+![](images/3-teach/many-qmd-to-output.png){width="70%" fig-alt="A schematic showing many qmd files, going through Quarto, to generate an HTML, PDF, or Word document or more. The Quarto logo is depicted as a baseball a penguin is spinning." fig-align="center"}
+
+::: notes
+So, in regards to teaching, I've talked about a much less steep hill students need to climb as their projects grow.
+I've also said this was a pleasant surprise as it was not something I had thought about when I started teaching with Quarto.
+But, in hindsight, this was no coincidence.
+Quarto's features like consistent citation syntax, more intentional control over when computations should run or rerun, and a single, minimal yaml that controls inputs, layouts, theming, etc. all contribute to flattening this learning curve.
+:::
+
+## Quarto puede crecer con sus usuarios de una manera profunda {.takeaway .center}
+
+<br>
+
+::: {.fragment .fade-up}
+![](images/3-teach/many-lang-qmd-to-output.png){fig-alt="A schematic showing many computing languages (R, Python, Julia, Observable, and more) going into many single qmd files, going through Quarto, to generate an HTML, PDF, or Word document or more. The Quarto logo is depicted as a baseball a penguin is spinning." fig-align="center"}
+:::
+
+::: notes
+And beyond learners growing and expanding the scope of their work easily with Quarto, Quarto can grow with them in a profound way as well.
+
+--\> The fact that Quarto is language and authoring tool independent offers an opportunity for folks to take Quarto with them on their data science journey, wherever that journey takes them.
+I mean..
+I'm almost tempted to finally learn Python to see it in action in Quarto.
+But who I know is learning Python, and Julia, and other languages are my students in their Computer Science courses.
+To imagine that they could learn R in RStudio using Quarto in my course, and then continue to use Quarto in Jupyter in their CS courses...
+That sounds like such a bright future to me!
+
+**\[Pause\]** And a bright future includes things we can't even imagine yet.
+
+**\[Mine continue on next slide\]**
+:::
