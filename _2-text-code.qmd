@@ -1,10 +1,5 @@
 # Haciendo un reporte {.title-top-ice background-image="images/horst_penguins_telescope.png" aria-label="One penguin standing on another penguin's shoulders in a snowscape, looking through a telescope at a Quarto logo moon in the night sky."}
 
-::: notes
-**Mine:** Much of my work, and much of Julie's work is collaborative. So, over to you Julie, for collaborating with Quarto.
-
-**Julie:** Thank you Mine -
-:::
 
 ## Componentes de un .qmd {#qmd-component}
 
@@ -104,8 +99,9 @@ Para listas ordenadas, utilice números seguidos de un punto.
 -   `#| eval`: Controla si el código es evaluado.
 -   `#| include`: Controla si tanto el código como su salida se incluyen en el documento.
 -   `#| output`: Controla si se muestra la salida del código.
--   `#| warning: false` no se imprimen los warnings, ej: conflicto de versiones.
--   `#| error: false` puede ser usado para hacer que compile el documento incluso si algún chunk tiene problemas.
+-   `#| warning: false`: No se imprimen los warnings, ejemplo: conflicto de versiones.
+-   `#| warning: false`: Controla la visualización de los mensajes generados por el código.
+-   `#| error: false`: Puede ser usado para hacer que compile el documento incluso si algún chunk tiene problemas.
 
 ## Tabla de resumen de código {#qmd-r-code-3}
 

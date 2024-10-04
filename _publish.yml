@@ -1,4 +1,6 @@
-- source: index.qmd
+- source: hola-quarto.qmd
   quarto-pub:
-    - id: d7a0794d-c3e7-47cf-930a-c518838016cc
-      url: 'https://quartopub.org/sites/pperedasuarez/hola-quarto'
+    - id: f85bdaa2-f846-4036-a8fb-589224b649c7
+      url: 'https://pperedasuarez.quarto.pub/hola-quarto'
+    - id: e1cd367b-db35-48c7-a17c-9e9d899ad19a
+      url: 'https://paula.quarto.pub/hola-quarto-81f5'

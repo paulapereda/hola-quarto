@@ -24,7 +24,7 @@ library(DT)
 pinguinos <- datos::pinguinos 
 
 # Lo hago una tabla
-datatable(pinguinos %>% select(-largo_aleta_mm, - masa_corporal_g), filter = "top", options = list(pageLength = 10), class = 'dt-small')
+DT::datatable(pinguinos %>% select(-largo_aleta_mm, - masa_corporal_g), filter = "top", options = list(pageLength = 10), class = 'dt-small')
 ```
 
 ## Gráficos interactivos {.interactive-graphs}
